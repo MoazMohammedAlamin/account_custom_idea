@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_view_inh_form" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit1</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="/form/*" position="before">
+            <header>
+              <button string="Set to Draft" type="object" name="draft_progressbar" status="approved" attrs="{'invisible': [('state','in',('draft','confirmed'))]}"/>
+              <button string="Confirm" type="object" name="confirmed_progressbar" attrs="{'invisible': [('state','in',('confirmed','approved'))]}"/>
+	            <button string="Approve" type="object" name="approved_progressbar" attrs="{'invisible': [('state','in',('draft','approved'))]}"/>
+              <field name="state" widget="statusbar" />
+            </header>
+          </xpath>
+        </field>
+    </record>
+</odoo>
